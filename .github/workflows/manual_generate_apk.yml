@@ -55,6 +55,11 @@ jobs:
           elif [ -e android/build/*/apk/*/*/android-normal-debug.apk ]; then
             cp android/build/*/apk/*/*/android-normal-debug.apk ppsspp/
           fi
+          if [ -e android/build/*/apk/*/*/android-normal-release.apk ]; then
+            cp android/build/*/apk/*/*/android-normal-release.apk ppsspp/
+          elif [ -e android/build/*/apk/*/*/android-gold-release.apk ]; then
+            cp android/build/*/apk/*/*/android-gold-release.apk ppsspp/
+          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
