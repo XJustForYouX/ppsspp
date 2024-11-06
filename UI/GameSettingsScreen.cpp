@@ -319,12 +319,12 @@ void GameSettingsScreen::CreateGraphicsSettings(UI::ViewGroup *graphicsSettings)
 		}
 	}
 
-	static const char *internalResolutions[] = { "Auto (1:1)", "1x PSP", "2x PSP", "3x PSP", "4x PSP", "5x PSP", "6x PSP", "7x PSP", "8x PSP", "9x PSP", "10x PSP" };
-	resolutionChoice_ = graphicsSettings->Add(new PopupMultiChoice(&g_Config.iInternalResolution, gr->T("Rendering Resolution"), internalResolutions, 0, ARRAY_SIZE(internalResolutions), I18NCat::GRAPHICS, screenManager()));
-	resolutionChoice_->OnChoice.Handle(this, &GameSettingsScreen::OnResolutionChange);
-	resolutionChoice_->SetEnabledFunc([] {
-		return !g_Config.bSoftwareRendering && !g_Config.bSkipBufferEffects;
-	});
+	PopupSliderChoice *internalResolutions = graphicsSettings->Add(new PopupSliderChoice(&g_Config.iInternalResolution, 0, 32, NO_DEFAULT_INT, gr->T("Rendering Resolution", "Rendering Resolution"), 1, screenManager(), gr->T("* PSP res, 0:Auto")));
+	internalResolutions->SetFormat("%ix");
+	internalResolutions->SetZeroLabel(gr->T("Auto (1:1)"));
+	internalResolutions->OnChange.Handle(this, &GameSettingsScreen::OnResolutionChange);
+	internalResolutions->SetEnabledFunc([]() {
+		return !g_Config.bSoftwareRendering && !g_Config.bSkipBufferEffects; });
 
 	int deviceType = System_GetPropertyInt(SYSPROP_DEVICE_TYPE);
 
