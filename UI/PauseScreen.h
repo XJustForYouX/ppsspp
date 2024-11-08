@@ -28,7 +28,7 @@
 
 class GamePauseScreen : public UIDialogScreenWithGameBackground {
 public:
-	GamePauseScreen(const Path &filename);
+	GamePauseScreen(const Path &filename, std::string gameID);
 	~GamePauseScreen();
 
 	void dialogFinished(const Screen *dialog, DialogResult dr) override;
