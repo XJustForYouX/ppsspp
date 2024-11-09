@@ -173,7 +173,7 @@ android {
 			}
 		}
 		legacy {
-			applicationId 'org.ppsspp.ppsspplegacy'
+			applicationId 'custom.ppsspp.ppsspplegacy'
 			dimension "variant"
 			targetSdkVersion 29  // This is the point of legacy.
 			externalNativeBuild {
